@@ -24,9 +24,8 @@
         "Email": "ana.martinez@example.com",
         "Telefono": "555-6543",
         "Direccion": "Callejón Este 654, Ciudad"
-    }
-    
-        {
+    },
+    {
             "Id": "5",
             "Nombre": "Daniel Puac",
             "Email": "danielito1021@gmail.com",

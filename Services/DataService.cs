@@ -7,7 +7,7 @@ namespace CreditCardSystem.Services
     {
         // 1. Estructuras de datos (actualizadas)
         public Dictionary<string, Cliente> Clientes { get; } = new();
-        public Dictionary<string, TarjetaCredito> Tarjetas { get; } = new(); // Tabla Hash temporal
+        public Dictionary<string, TarjetaCredito> Tarjetas { get; } = new(); // Tabla Hash 
         public Stack<Transaccion> TransaccionesRecientes { get; } = new();
         public Queue<Transaccion> TransaccionesPendientes { get; } = new();
 
