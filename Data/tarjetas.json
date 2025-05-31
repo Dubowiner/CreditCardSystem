@@ -43,5 +43,95 @@
         "Pin": "7890",
         "Bloqueada": false,
         "FechaVencimiento": "2026-12-25"
+    },
+    {
+        "Numero": "4567-8901-2345-6789",
+        "ClienteId": "6",
+        "Saldo": 20000.00,
+        "Limite": 40000.00,
+        "Pin": "9012",
+        "Bloqueada": true,
+        "FechaVencimiento": "2024-10-15"
+    },
+    {
+        "Numero": "1234-5678-9012-3456",
+        "ClienteId": "7",
+        "Saldo": 15000.00,
+        "Limite": 30000.00,
+        "Pin": "1234",
+        "Bloqueada": false,
+        "FechaVencimiento": "2025-12-31"
+    },
+    {
+        "Numero": "9876-5432-1098-7654",
+        "ClienteId": "8",
+        "Saldo": 5000.00,
+        "Limite": 10000.00,
+        "Pin": "5678",
+        "Bloqueada": false,
+        "FechaVencimiento": "2026-06-30"
+    },
+    {
+        "Numero": "3456-7890-1234-5678",
+        "ClienteId": "9",
+        "Saldo": 1000.00,
+        "Limite": 5000.00,
+        "Pin": "3456",
+        "Bloqueada": false,
+        "FechaVencimiento": "2025-03-20"
+    },
+    {
+        "Numero": "7890-1234-5678-9012",
+        "ClienteId": "10",
+        "Saldo": 7500.00,
+        "Limite": 15000.00,
+        "Pin": "7890",
+        "Bloqueada": false,
+        "FechaVencimiento": "2026-12-25"
+    },
+    {
+        "Numero": "2345-6789-0123-4567",
+        "ClienteId": "11",
+        "Saldo": 30000.00,
+        "Limite": 50000.00,
+        "Pin": "2345",
+        "Bloqueada": false,
+        "FechaVencimiento": "2027-01-15"
+    },
+    {
+        "Numero": "6789-0123-4567-8901",
+        "ClienteId": "12",
+        "Saldo": 12000.00,
+        "Limite": 25000.00,
+        "Pin": "6789",
+        "Bloqueada": true,
+        "FechaVencimiento": "2024-08-10"
+    },
+    {
+        "Numero": "0123-4567-8901-2345",
+        "ClienteId": "13",
+        "Saldo": 8000.00,
+        "Limite": 12000.00,
+        "Pin": "0123",
+        "Bloqueada": false,
+        "FechaVencimiento": "2025-09-05"
+    },
+    {
+        "Numero": "5555-6666-7777-8888",
+        "ClienteId": "14",
+        "Saldo": 25000.00,
+        "Limite": 35000.00,
+        "Pin": "5555",
+        "Bloqueada": false,
+        "FechaVencimiento": "2026-11-20"
+    },
+    {
+        "Numero": "9999-8888-7777-6666",
+        "ClienteId": "15",
+        "Saldo": 500.00,
+        "Limite": 3000.00,
+        "Pin": "9999",
+        "Bloqueada": true,
+        "FechaVencimiento": "2024-05-30"
     }
 ]
