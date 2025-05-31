@@ -10,5 +10,19 @@
         "Nombre": "juan jose maxia",
         "Email": "maxiajuan@gmail.com",
         "Telefono": "555-5678"
+    },
+    {
+        "Id": "4",
+        "Nombre": "Carlos Ramírez",
+        "Email": "carlos.ramirez@example.com",
+        "Telefono": "555-4321",
+        "Direccion": "Plaza Sur 321, Ciudad"
+    },
+    {
+        "Id": "5",
+        "Nombre": "Ana Martínez",
+        "Email": "ana.martinez@example.com",
+        "Telefono": "555-6543",
+        "Direccion": "Callejón Este 654, Ciudad"
     }
 ]

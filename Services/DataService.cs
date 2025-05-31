@@ -5,143 +5,104 @@ namespace CreditCardSystem.Services
 {
     public class DataService
     {
-        // Estructuras de datos (requeridas en el proyecto)
-        public Dictionary<string, Cliente> Clientes { get; } = new(); // Tabla Hash
-        public List<TarjetaCredito> Tarjetas { get; } = new(); // Lista enlazada
-        public Stack<Transaccion> TransaccionesRecientes { get; } = new(); // Pila (últimas transacciones)
-        public Queue<Transaccion> TransaccionesPendientes { get; } = new(); // Cola (procesamiento batch)
+        // 1. Estructuras de datos (actualizadas)
+        public Dictionary<string, Cliente> Clientes { get; } = new();
+        public Dictionary<string, TarjetaCredito> Tarjetas { get; } = new(); // Tabla Hash temporal
+        public Stack<Transaccion> TransaccionesRecientes { get; } = new();
+        public Queue<Transaccion> TransaccionesPendientes { get; } = new();
 
         public DataService()
         {
-            // Limpia estructuras antes de cargar
-            Clientes.Clear();
-            Tarjetas.Clear();
-            TransaccionesRecientes.Clear();
-            TransaccionesPendientes.Clear();
-
-            CargarDatosIniciales(); // Carga datos al iniciar
+            CargarDatosIniciales();
         }
 
-        // Método principal de carga de datos
         private void CargarDatosIniciales()
         {
             try
             {
-                // 1. Carga clientes desde JSON con validación de duplicados
+                // Carga de clientes
                 if (File.Exists("Data/clientes.json"))
                 {
-                    string jsonClientes = File.ReadAllText("Data/clientes.json");
+                    var jsonClientes = File.ReadAllText("Data/clientes.json");
                     var clientes = JsonSerializer.Deserialize<List<Cliente>>(jsonClientes);
-
-                    foreach (var c in clientes)
+                    foreach (var c in clientes.Where(c => !Clientes.ContainsKey(c.Id)))
                     {
-                        if (!Clientes.ContainsKey(c.Id)) // Evita duplicados
-                        {
-                            Clientes.Add(c.Id, c);
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Advertencia: Cliente duplicado omitido (ID: {c.Id})");
-                        }
+                        Clientes.Add(c.Id, c);
                     }
                 }
 
-                // 2. Carga tarjetas desde JSON con validación
+                // Carga de tarjetas (usando Dictionary temporal)
                 if (File.Exists("Data/tarjetas.json"))
                 {
-                    string jsonTarjetas = File.ReadAllText("Data/tarjetas.json");
+                    var jsonTarjetas = File.ReadAllText("Data/tarjetas.json");
                     var tarjetas = JsonSerializer.Deserialize<List<TarjetaCredito>>(jsonTarjetas);
-
-                    foreach (var t in tarjetas)
+                    foreach (var t in tarjetas.Where(t => !Tarjetas.ContainsKey(t.Numero)))
                     {
-                        if (!Tarjetas.Any(tarj => tarj.Numero == t.Numero)) // Evita duplicados
-                        {
-                            Tarjetas.Add(t);
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Advertencia: Tarjeta duplicada omitida (Número: {t.Numero})");
-                        }
+                        Tarjetas.Add(t.Numero, t);
                     }
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error cargando datos: {ex.Message}");
-                CargarDatosDemo(); // Si hay error, carga datos de prueba
+                CargarDatosDePrueba(); // Renombrado para evitar conflictos
             }
         }
 
-        // Datos de prueba (por si falla la carga de JSON)
-        private void CargarDatosDemo()
+        private void CargarDatosDePrueba()
         {
-            try
+            // Cliente demo
+            if (!Clientes.ContainsKey("1"))
             {
-                // Cliente demo (solo si no existe)
-                if (!Clientes.ContainsKey("1"))
+                Clientes.Add("1", new Cliente
                 {
-                    var clienteDemo = new Cliente
-                    {
-                        Id = "1",
-                        Nombre = "Cliente Demo",
-                        Email = "demo@banco.com",
-                        Telefono = "555-1234"
-                    };
-                    Clientes.Add(clienteDemo.Id, clienteDemo);
-                }
-
-                // Tarjeta demo (solo si no existe)
-                if (!Tarjetas.Any(t => t.Numero == "1234-5678-9012-3456"))
-                {
-                    Tarjetas.Add(new TarjetaCredito
-                    {
-                        Numero = "1234-5678-9012-3456",
-                        ClienteId = "1",
-                        Saldo = 5000,
-                        Limite = 10000,
-                        Pin = "1234",
-                        Bloqueada = false
-                    });
-                }
-
-                // Transacción demo
-                RegistrarTransaccion("1234-5678-9012-3456", 1000, "Carga inicial");
+                    Id = "1",
+                    Nombre = "Cliente Demo",
+                    Email = "demo@banco.com",
+                    Telefono = "555-1234"
+                });
             }
-            catch (Exception ex)
+
+            // Tarjeta demo
+            if (!Tarjetas.ContainsKey("1234-5678-9012-3456"))
             {
-                Console.WriteLine($"Error cargando datos demo: {ex.Message}");
+                Tarjetas.Add("1234-5678-9012-3456", new TarjetaCredito
+                {
+                    Numero = "1234-5678-9012-3456",
+                    ClienteId = "1",
+                    Saldo = 5000,
+                    Limite = 10000,
+                    Pin = "1234",
+                    Bloqueada = false
+                });
             }
         }
 
-        // ---- Métodos útiles para los controllers ----
-        public TarjetaCredito BuscarTarjeta(string numeroTarjeta)
+        // Métodos clave (actualizados)
+        public TarjetaCredito BuscarTarjeta(string numero)
         {
-            return Tarjetas.FirstOrDefault(t => t.Numero == numeroTarjeta);
+            return Tarjetas.TryGetValue(numero, out var tarjeta) ? tarjeta : null;
         }
 
         public void RegistrarTransaccion(string numeroTarjeta, decimal monto, string tipo)
         {
             var transaccion = new Transaccion
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = Guid.NewGuid().ToString(), // Convertido a string
                 TarjetaNumero = numeroTarjeta,
                 Monto = monto,
                 Tipo = tipo,
                 Fecha = DateTime.Now
             };
 
-            // Agrega a la pila (límite: 10)
+            // Limitar historial
             if (TransaccionesRecientes.Count >= 10)
-            {
                 TransaccionesRecientes.Pop();
-            }
-            TransaccionesRecientes.Push(transaccion);
 
-            // Agrega a la cola
+            TransaccionesRecientes.Push(transaccion);
             TransaccionesPendientes.Enqueue(transaccion);
         }
 
-        // Método adicional para obtener cliente por ID
         public Cliente BuscarCliente(string id)
         {
             return Clientes.TryGetValue(id, out var cliente) ? cliente : null;

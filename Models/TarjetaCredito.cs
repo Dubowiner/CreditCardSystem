@@ -8,5 +8,6 @@
     public decimal Limite { get; set; }
     public string Pin { get; set; } // Ej: "1234"
     public bool Bloqueada { get; set; } = false;
-}
+        public DateTime FechaVencimiento { get; set; }
+    }
 }

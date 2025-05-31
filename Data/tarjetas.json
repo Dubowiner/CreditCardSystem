@@ -1,19 +1,47 @@
-{
-    [
-        {
-            "Numero": "1234-5678-9012-3456",
-            "ClienteId": "1",
-            "Saldo": 15000.00,
-            "Limite": 30000.00,
-            "Pin": "1234",
-            "Bloqueada": false
-        },
-        {
-            "Numero": "9876-5432-1098-7654",
-            "ClienteId": "2",
-            "Saldo": 5000.00,
-            "Limite": 10000.00,
-            "Pin": "5678",
-            "Bloqueada": false
-        }
-    ]
+[
+    {
+        "Numero": "1234-5678-9012-3456",
+        "ClienteId": "1",
+        "Saldo": 15000.00,
+        "Limite": 30000.00,
+        "Pin": "1234",
+        "Bloqueada": false,
+        "FechaVencimiento": "2027-10-15"
+    },
+    {
+        "Numero": "9876-5432-1098-7654",
+        "ClienteId": "2",
+        "Saldo": 5000.00,
+        "Limite": 10000.00,
+        "Pin": "5678",
+        "Bloqueada": false,
+        "FechaVencimiento": "2026-10-15"
+    },
+    {
+        "Numero": "4567-8901-2345-6789",
+        "ClienteId": "3",
+        "Saldo": 20000.00,
+        "Limite": 40000.00,
+        "Pin": "9012",
+        "Bloqueada": true,
+        "FechaVencimiento": "2024-10-15"
+    },
+    {
+        "Numero": "3456-7890-1234-5678",
+        "ClienteId": "4",
+        "Saldo": 1000.00,
+        "Limite": 5000.00,
+        "Pin": "3456",
+        "Bloqueada": false,
+        "FechaVencimiento": "2025-03-20"
+    },
+    {
+        "Numero": "7890-1234-5678-9012",
+        "ClienteId": "5",
+        "Saldo": 7500.00,
+        "Limite": 15000.00,
+        "Pin": "7890",
+        "Bloqueada": false,
+        "FechaVencimiento": "2026-12-25"
+    }
+]
