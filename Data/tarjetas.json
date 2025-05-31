@@ -1,0 +1,19 @@
+{
+    [
+        {
+            "Numero": "1234-5678-9012-3456",
+            "ClienteId": "1",
+            "Saldo": 15000.00,
+            "Limite": 30000.00,
+            "Pin": "1234",
+            "Bloqueada": false
+        },
+        {
+            "Numero": "9876-5432-1098-7654",
+            "ClienteId": "2",
+            "Saldo": 5000.00,
+            "Limite": 10000.00,
+            "Pin": "5678",
+            "Bloqueada": false
+        }
+    ]
